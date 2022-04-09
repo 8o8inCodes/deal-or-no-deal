@@ -23,3 +23,7 @@
 .item:hover {
     background: rgb(255, 234, 151);
 }
+
+.crateOpen {
+    background: rgb(92, 99, 107);
+}

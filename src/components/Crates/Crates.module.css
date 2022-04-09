@@ -19,4 +19,13 @@
     font-size: 50px;
     border-radius: 30px;
     margin: 10px;
+    border: none;
+}
+
+.crate:hover {
+    background: rgb(130, 193, 255);
+}
+
+.crateOpen {
+    background: rgb(92, 99, 107);
 }

@@ -23,7 +23,9 @@ function App() {
 	const [caseAmountToPick, setCaseAmountToPick] = useState(
 		AMOUNT_OF_CASES_TO_PICK
 	);
-	const [currentCaseAmount, setCurrentCaseAmount] = useState(0);
+	const [currentCaseAmount, setCurrentCaseAmount] = useState(
+		AMOUNT_OF_CASES_TO_PICK
+	);
 
 	const [bankerMode, setBankerMode] = useState(false);
 	const [bankerOffer, setBankerOffer] = useState(0);

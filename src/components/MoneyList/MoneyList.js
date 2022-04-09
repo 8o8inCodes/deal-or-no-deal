@@ -4,10 +4,14 @@ import s from "./MoneyList.module.css";
 const MoneyList = ({ moneyList }) => {
 	return (
 		<div className={s.container}>
-			{moneyList.map((money) => {
+			{moneyList.map((crate) => {
+				let className = s.item;
+				if (crate.isOpen) {
+					className += " " + s.crateOpen;
+				}
 				return (
-					<button key={money.money} className={s.item}>
-						{money.money}
+					<button key={crate.money} className={className}>
+						{crate.money}
 					</button>
 				);
 			})}
