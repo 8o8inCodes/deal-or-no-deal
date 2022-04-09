@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import MoneyList from "./components/MoneyList/MoneyList";
 import Crates from "./components/Crates/Crates";
 import OpenCrateAnimation from "./components/OpenCrateAnimation/OpenCrateAnimation";
+import BankerPopup from "./components/BankerPopup/BankerPopup";
 
 const crates = [
 	0.01, 1, 5, 10, 25, 50, 75, 100, 200, 300, 400, 500, 750, 1000, 5000, 10000,
@@ -18,6 +19,8 @@ const WIN_STATES = {
 };
 
 function App() {
+	const [selectedInitialCrate, setSelectedInitialCrate] = useState(null);
+
 	const [cratesState, setCratesState] = useState([]);
 	const [shuffledCrates, setShuffledCrates] = useState([]);
 
@@ -29,7 +32,6 @@ function App() {
 	);
 
 	const [bankerMode, setBankerMode] = useState(false);
-	const [bankerOffer, setBankerOffer] = useState(0);
 
 	const [winState, setWinState] = useState(0);
 	const [moneyWon, setMoneyWon] = useState(0);
@@ -37,8 +39,9 @@ function App() {
 	const [selectedCrate, setSelectedCrate] = useState();
 	const [openCrateMode, setOpenCrateMode] = useState(false);
 
-	const handleAccept = () => {
-		setMoneyWon(bankerOffer);
+	const handleAccept = (offer) => {
+		setBankerMode(false);
+		setMoneyWon(offer);
 		setWinState(WIN_STATES.OFFER_ACCEPTED);
 	};
 
@@ -63,19 +66,51 @@ function App() {
 		});
 		setShuffledCrates(newShuffledCrates);
 		setCratesState(newCratesState);
+		updateCaseAmountToPick();
 	};
-
+	const updateCaseAmountToPick = () => {
+		setCurrentCaseAmount(currentCaseAmount - 1);
+		if (currentCaseAmount <= 1) {
+			setBankerMode(true);
+		}
+	};
 	const handleReject = () => {
-		const newCaseAmount = caseAmountToPick - 1;
+		let newCaseAmount = caseAmountToPick - 1;
+		if (newCaseAmount <= 1) {
+			newCaseAmount = 1;
+		}
 		setCaseAmountToPick(newCaseAmount);
 		setCurrentCaseAmount(newCaseAmount);
 		setBankerMode(false);
-		setBankerOffer(0);
 	};
 
 	const handleCrateSelect = (crate) => {
-		setSelectedCrate(crate);
-		setOpenCrateMode(true);
+		if (selectedInitialCrate) {
+			setSelectedCrate(crate);
+			setOpenCrateMode(true);
+		} else {
+			const newCratesState = cratesState.map((_crate) => {
+				if (_crate.money === crate.money) {
+					return {
+						...crate,
+						initial: true,
+					};
+				}
+				return _crate;
+			});
+			const newShuffledCrates = shuffledCrates.map((_crate) => {
+				if (_crate.money === crate.money) {
+					return {
+						...crate,
+						initial: true,
+					};
+				}
+				return _crate;
+			});
+			setShuffledCrates(newShuffledCrates);
+			setCratesState(newCratesState);
+			setSelectedInitialCrate({ ...crate, initial: true });
+		}
 	};
 
 	const shuffle = (array) => {
@@ -98,47 +133,73 @@ function App() {
 		crates.forEach((money) => {
 			newCrateState.push({
 				money,
-				open: false,
+				isOpen: false,
+				initial: false,
 			});
 		});
 		setCratesState(newCrateState);
 		setShuffledCrates(shuffle(newCrateState));
 	}, []);
+
+	const renderGame = () => {
+		return (
+			<>
+				<div className="gameContainer">
+					<MoneyList
+						moneyList={cratesState.slice(0, Math.floor(cratesState.length / 2))}
+					></MoneyList>
+					<div>
+						{selectedInitialCrate && (
+							<h1>Amount of cases to pick {currentCaseAmount}</h1>
+						)}
+						{!selectedInitialCrate && <h1>Select your magic crate</h1>}
+
+						<Crates
+							crates={shuffledCrates}
+							onCrateSelect={handleCrateSelect}
+						></Crates>
+					</div>
+					<MoneyList
+						moneyList={cratesState.slice(
+							Math.floor(cratesState.length / 2),
+							cratesState.length
+						)}
+					></MoneyList>
+				</div>
+
+				{bankerMode && (
+					<BankerPopup
+						onAccept={handleAccept}
+						onReject={handleReject}
+					></BankerPopup>
+				)}
+				{openCrateMode && (
+					<OpenCrateAnimation
+						crate={selectedCrate}
+						onAnimationFinish={handleCrateOpenFinish}
+						onClose={() => setOpenCrateMode(false)}
+					></OpenCrateAnimation>
+				)}
+			</>
+		);
+	};
+
+	const renderWin = (msg) => {
+		return (
+			<>
+				<h1>{msg}</h1>
+				<h2>${moneyWon}</h2>
+			</>
+		);
+	};
+
 	return (
 		<div className="App">
-			<div className="gameContainer">
-				<MoneyList
-					moneyList={cratesState.slice(0, Math.floor(cratesState.length / 2))}
-				></MoneyList>
-				<div>
-					<h1>Amount of cases to pick {currentCaseAmount}</h1>
-					<Crates
-						crates={shuffledCrates}
-						onCrateSelect={handleCrateSelect}
-					></Crates>
-				</div>
-				<MoneyList
-					moneyList={cratesState.slice(
-						Math.floor(cratesState.length / 2),
-						cratesState.length
-					)}
-				></MoneyList>
-			</div>
-
-			{/* {bankerMode && (
-				<BankerPopup
-					bankerOffer={bankerOffer}
-					onAccept={handleAccept}
-					onReject={handleReject}
-				></BankerPopup>
-			)}*/}
-			{openCrateMode && (
-				<OpenCrateAnimation
-					crate={selectedCrate}
-					onAnimationFinish={handleCrateOpenFinish}
-					onClose={() => setOpenCrateMode(false)}
-				></OpenCrateAnimation>
-			)}
+			{winState === 0 && renderGame()}
+			{winState === WIN_STATES.FINAL_CRATE_OPENED &&
+				renderWin("You have won by opening the last crate")}
+			{winState === WIN_STATES.OFFER_ACCEPTED &&
+				renderWin("You have won by accepting banker's offer")}
 		</div>
 	);
 }

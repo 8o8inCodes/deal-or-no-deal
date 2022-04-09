@@ -6,13 +6,16 @@ const Crates = ({ crates, onCrateSelect }) => {
 		<div className={s.container}>
 			{crates.map((crate, index) => {
 				let className = s.crate;
-				if (crate.isOpen) {
+				if (crate.isOpen && !crate.initial) {
 					className += " " + s.crateOpen;
+				}
+				if (crate.initial) {
+					className += " " + s.initialCrate;
 				}
 				return (
 					<button
 						onClick={() => {
-							if (!crate.isOpen) onCrateSelect(crate);
+							if (!crate.isOpen && !crate.initial) onCrateSelect(crate);
 						}}
 						key={index}
 						className={className}

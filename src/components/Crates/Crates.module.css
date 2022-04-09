@@ -29,3 +29,7 @@
 .crateOpen, .crateOpen:hover {
     background: rgb(92, 99, 107);
 }
+
+.initialCrate, .initialCrate:hover {
+    background: rgb(255, 255, 69);
+}
