@@ -39,6 +39,8 @@ function App() {
 	const [selectedCrate, setSelectedCrate] = useState();
 	const [openCrateMode, setOpenCrateMode] = useState(false);
 
+	const [finalCrates, setFinalCrates] = useState(null);
+
 	const handleAccept = (offer) => {
 		setBankerMode(false);
 		setMoneyWon(offer);
@@ -66,7 +68,22 @@ function App() {
 		});
 		setShuffledCrates(newShuffledCrates);
 		setCratesState(newCratesState);
-		updateCaseAmountToPick();
+
+		let closedCrates = cratesState.filter((crate) => !crate.isOpen);
+		if (closedCrates.length === 3) {
+			setFinalCrates([
+				{
+					...closedCrates[0],
+					initial: false,
+				},
+				{
+					...closedCrates[1],
+					initial: false,
+				},
+			]);
+		} else {
+			updateCaseAmountToPick();
+		}
 	};
 	const updateCaseAmountToPick = () => {
 		setCurrentCaseAmount(currentCaseAmount - 1);
@@ -85,6 +102,11 @@ function App() {
 	};
 
 	const handleCrateSelect = (crate) => {
+		if (finalCrates) {
+			setMoneyWon(crate.money);
+			setWinState(WIN_STATES.FINAL_CRATE_OPENED);
+			return;
+		}
 		if (selectedInitialCrate) {
 			setSelectedCrate(crate);
 			setOpenCrateMode(true);
@@ -155,7 +177,7 @@ function App() {
 						{!selectedInitialCrate && <h1>Select your magic crate</h1>}
 
 						<Crates
-							crates={shuffledCrates}
+							crates={finalCrates || shuffledCrates}
 							onCrateSelect={handleCrateSelect}
 						></Crates>
 					</div>
