@@ -52,6 +52,16 @@ function App() {
 			}
 			return crate;
 		});
+		const newShuffledCrates = shuffledCrates.map((crate) => {
+			if (crate.money === selectedCrate.money) {
+				return {
+					...crate,
+					isOpen: true,
+				};
+			}
+			return crate;
+		});
+		setShuffledCrates(newShuffledCrates);
 		setCratesState(newCratesState);
 	};
 

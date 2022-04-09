@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import s from "./OpenCrateAnimation.module.css";
 const OpenCrateAnimation = ({ crate, onAnimationFinish, onClose }) => {
+	useEffect(() => {
+		onAnimationFinish();
+	}, []);
 	return (
 		<div className={s.backdrop}>
 			<div className={s.modal}>

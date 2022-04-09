@@ -11,7 +11,7 @@ const MoneyList = ({ moneyList }) => {
 				}
 				return (
 					<button key={crate.money} className={className}>
-						{crate.money}
+						${crate.money}
 					</button>
 				);
 			})}

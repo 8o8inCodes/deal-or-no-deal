@@ -11,7 +11,9 @@ const Crates = ({ crates, onCrateSelect }) => {
 				}
 				return (
 					<button
-						onClick={() => onCrateSelect(crate)}
+						onClick={() => {
+							if (!crate.isOpen) onCrateSelect(crate);
+						}}
 						key={index}
 						className={className}
 					>
