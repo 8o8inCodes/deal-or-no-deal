@@ -6,9 +6,9 @@ const MoneyList = ({ moneyList }) => {
 		<div className={s.container}>
 			{moneyList.map((money) => {
 				return (
-					<div key={money.money} className={s.item}>
+					<button key={money.money} className={s.item}>
 						{money.money}
-					</div>
+					</button>
 				);
 			})}
 		</div>

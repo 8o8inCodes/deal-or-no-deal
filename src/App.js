@@ -2,6 +2,7 @@ import "./App.css";
 import { useState, useEffect } from "react";
 
 import MoneyList from "./components/MoneyList/MoneyList";
+import Crates from "./components/Crates/Crates";
 
 const crates = [
 	0.01, 1, 5, 10, 25, 50, 75, 100, 200, 300, 400, 500, 750, 1000, 5000, 10000,
@@ -17,7 +18,7 @@ const WIN_STATES = {
 
 function App() {
 	const [cratesState, setCratesState] = useState([]);
-	const [shuffledCrates, setShuffledCrates] = useState();
+	const [shuffledCrates, setShuffledCrates] = useState([]);
 
 	const [caseAmountToPick, setCaseAmountToPick] = useState(
 		AMOUNT_OF_CASES_TO_PICK
@@ -91,23 +92,26 @@ function App() {
 	}, []);
 	return (
 		<div className="App">
-			<MoneyList
-				moneyList={cratesState.slice(0, Math.floor(cratesState.length / 2))}
-			></MoneyList>
-			{/* <div>
-				<h1>Amount of cases to pick {currentCaseAmount}</h1>
-				<Crates
-					crates={shuffledCrates}
-					onCrateSelect={handleCrateSelect}
-				></Crates>
+			<div className="gameContainer">
+				<MoneyList
+					moneyList={cratesState.slice(0, Math.floor(cratesState.length / 2))}
+				></MoneyList>
+				<div>
+					<h1>Amount of cases to pick {currentCaseAmount}</h1>
+					<Crates
+						crates={shuffledCrates}
+						onCrateSelect={handleCrateSelect}
+					></Crates>
+				</div>
+				<MoneyList
+					moneyList={cratesState.slice(
+						Math.floor(cratesState.length / 2),
+						cratesState.length
+					)}
+				></MoneyList>
 			</div>
-			<MoneyList
-				moneyList={cratesState.slice(
-					Math.floor(cratesState.length / 2),
-					cratesState.length
-				)}
-			></MoneyList>
-			{bankerMode && (
+
+			{/* {bankerMode && (
 				<BankerPopup
 					bankerOffer={bankerOffer}
 					onAccept={handleAccept}
@@ -119,7 +123,7 @@ function App() {
 					onAnimationFinish={handleCrateOpenFinish}
 					onClose={() => setOpenCrateMode(false)}
 				></OpenCrateAnimation>
-			)} */}
+			)}  */}
 		</div>
 	);
 }
