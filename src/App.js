@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 
 import MoneyList from "./components/MoneyList/MoneyList";
 import Crates from "./components/Crates/Crates";
+import OpenCrateAnimation from "./components/OpenCrateAnimation/OpenCrateAnimation";
 
 const crates = [
 	0.01, 1, 5, 10, 25, 50, 75, 100, 200, 300, 400, 500, 750, 1000, 5000, 10000,
@@ -64,6 +65,7 @@ function App() {
 
 	const handleCrateSelect = (crate) => {
 		setSelectedCrate(crate);
+		setOpenCrateMode(true);
 	};
 
 	const shuffle = (array) => {
@@ -119,13 +121,14 @@ function App() {
 					onAccept={handleAccept}
 					onReject={handleReject}
 				></BankerPopup>
-			)}
+			)}*/}
 			{openCrateMode && (
 				<OpenCrateAnimation
+					crate={selectedCrate}
 					onAnimationFinish={handleCrateOpenFinish}
 					onClose={() => setOpenCrateMode(false)}
 				></OpenCrateAnimation>
-			)}  */}
+			)}
 		</div>
 	);
 }
