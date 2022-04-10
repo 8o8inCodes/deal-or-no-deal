@@ -6,11 +6,10 @@ import Crates from "./components/Crates/Crates";
 import OpenCrateAnimation from "./components/OpenCrateAnimation/OpenCrateAnimation";
 import BankerPopup from "./components/BankerPopup/BankerPopup";
 
-const crates = [0.01, 1, 5, 10, 25, 50, 75, 100, 200];
-// const crates = [
-// 	0.01, 1, 5, 10, 25, 50, 75, 100, 200, 300, 400, 500, 750, 1000, 5000, 10000,
-// 	25000, 50000, 75000, 100000, 200000, 300000, 400000, 500000, 750000, 1000000,
-// ];
+const crates = [
+	0.01, 1, 5, 10, 25, 50, 75, 100, 200, 300, 400, 500, 750, 1000, 5000, 10000,
+	25000, 50000, 75000, 100000, 200000, 300000, 400000, 500000, 750000, 1000000,
+];
 
 const AMOUNT_OF_CASES_TO_PICK = 6;
 
@@ -208,6 +207,9 @@ function App() {
 							cratesState.length
 						)}
 					></MoneyList>
+				</div>
+				<div>
+					<input className="editableTitle" type="text"></input>
 				</div>
 
 				{bankerMode && (
