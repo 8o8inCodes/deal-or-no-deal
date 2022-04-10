@@ -20,7 +20,9 @@ const Crates = ({ crates, onCrateSelect }) => {
 						key={index}
 						className={className}
 					>
-						{crate.isOpen ? `$${crate.money}` : index + 1}
+						<span className={s.crateText}>
+							{crate.isOpen ? `$${crate.money}` : index + 1}
+						</span>
 					</button>
 				);
 			})}

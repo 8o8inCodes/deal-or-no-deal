@@ -1,5 +1,5 @@
 .container {
-    background: rgb(41, 33, 0);
+    background: rgb(32 34 46);
     overflow: hidden;
     width: 20%;
     min-width: 200px;
@@ -8,7 +8,9 @@
 }
 
 .item {
-    background: rgb(255, 218, 69);
+    /* background: rgb(255, 218, 69); */
+    background: rgb(255,234,151);
+    background: linear-gradient(0deg, rgb(255, 229, 124) 54%, rgb(255, 242, 197) 58%);
     color: black;
     padding-top: 7px;
     padding-bottom: 7px;

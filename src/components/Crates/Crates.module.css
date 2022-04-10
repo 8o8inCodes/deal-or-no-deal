@@ -2,14 +2,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgb(41, 33, 0);
+    background: rgb(32 34 46);
     flex-wrap: wrap;
     margin: 30px;
     border-radius: 20px;
 }
 
 .crate {
-    background: rgb(0 126 255);
+    filter: saturate(0.5);
+    background: none;
+    background-image: url('/public/images/BagsAndBoxes_75_t.PNG');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50%;
     color: rgb(255, 255, 255);
     width: 200px;
     height: 140px;
@@ -20,16 +25,47 @@
     border-radius: 30px;
     margin: 10px;
     border: none;
+    text-shadow: rgb(0, 0, 0) 3px 0px 0px, 
+                rgb(0, 0, 0) 2.83487px 0.981584px 0px, 
+                rgb(0, 0, 0) 2.35766px 1.85511px 0px, 
+                rgb(0, 0, 0) 1.62091px 2.52441px 0px, 
+                rgb(0, 0, 0) 0.705713px 2.91581px 0px, 
+                rgb(0, 0, 0) -0.287171px 2.98622px 0px, 
+                rgb(0, 0, 0) -1.24844px 2.72789px 0px, 
+                rgb(0, 0, 0) -2.07227px 2.16926px 0px, 
+                rgb(0, 0, 0) -2.66798px 1.37182px 0px, 
+                rgb(0, 0, 0) -2.96998px 0.42336px 0px, 
+                rgb(0, 0, 0) -2.94502px -0.571704px 0px, 
+                rgb(0, 0, 0) -2.59586px -1.50383px 0px, 
+                rgb(0, 0, 0) -1.96093px -2.27041px 0px, 
+                rgb(0, 0, 0) -1.11013px -2.78704px 0px, 
+                rgb(0, 0, 0) -0.137119px -2.99686px 0px, 
+                rgb(0, 0, 0) 0.850987px -2.87677px 0px, 
+                rgb(0, 0, 0) 1.74541px -2.43999px 0px, 
+                rgb(0, 0, 0) 2.44769px -1.73459px 0px, 
+                rgb(0, 0, 0) 2.88051px -0.838247px 0px,
+                rgb(0, 0, 0) 0 0 10px,
+                rgb(0, 0, 0) 0 0 10px,
+                rgb(0, 0, 0) 0 0 10px,
+                rgb(0, 0, 0) 0 0 10px;
+    /* text-shadow: 0px 0px 6px #000000; */
 }
 
 .crate:hover {
-    background: rgb(130, 193, 255);
+    background-color: none;
+    filter:hue-rotate(150deg);
 }
 
 .crateOpen, .crateOpen:hover {
-    background: rgb(92, 99, 107);
+    filter: saturate(0.1) opacity(0.2);
 }
 
 .initialCrate, .initialCrate:hover {
-    background: rgb(255, 255, 69);
+    filter:hue-rotate(250deg);
+}
+
+.crateText {
+    background-color: rgb(255 171 171 / 61%);
+    border-radius: 20px;
+    padding: 10px;
 }

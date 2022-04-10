@@ -16,8 +16,14 @@ const BankerPopup = ({ onAccept, onReject }) => {
 						onChange={(e) => setBankerOffer(e.target.value)}
 					></input>
 				</label>
-				<button onClick={() => onAccept(bankerOffer)}>Deal</button>
-				<button onClick={onReject}>No deal!</button>
+				<div>
+					<button className={s.button} onClick={() => onAccept(bankerOffer)}>
+						Deal
+					</button>
+					<button className={s.button} onClick={onReject}>
+						No deal!
+					</button>
+				</div>
 			</div>
 		</div>
 	);

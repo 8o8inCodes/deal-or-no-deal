@@ -208,10 +208,12 @@ function App() {
 
 	const renderWin = (msg) => {
 		return (
-			<>
-				<h1>{msg}</h1>
-				<h2>${moneyWon}</h2>
-			</>
+			<div className="winnerContainer">
+				<div className="winnerMessage">
+					<h1>{msg}</h1>
+					<h2>${moneyWon}</h2>
+				</div>
+			</div>
 		);
 	};
 

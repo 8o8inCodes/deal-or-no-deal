@@ -8,7 +8,9 @@ const OpenCrateAnimation = ({ crate, onAnimationFinish, onClose }) => {
 		<div className={s.backdrop}>
 			<div className={s.modal}>
 				<h1>${crate.money}</h1>
-				<button onClick={onClose}>Close</button>
+				<button className={s.button} onClick={onClose}>
+					Close
+				</button>
 			</div>
 		</div>
 	);
