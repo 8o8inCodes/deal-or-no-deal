@@ -172,9 +172,13 @@ function App() {
 					></MoneyList>
 					<div>
 						{selectedInitialCrate && (
-							<h1>Amount of cases to pick {currentCaseAmount}</h1>
+							<h1 className="title">
+								Amount of cases to pick {currentCaseAmount}
+							</h1>
 						)}
-						{!selectedInitialCrate && <h1>Select your magic crate</h1>}
+						{!selectedInitialCrate && (
+							<h1 className="title">Select your magic crate</h1>
+						)}
 
 						<Crates
 							crates={finalCrates || shuffledCrates}

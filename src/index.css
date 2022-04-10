@@ -1,6 +1,9 @@
 html {
   background: rgb(12, 12, 12);
   color: white;
+  background-image: url('/public/images/666839.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 body {
