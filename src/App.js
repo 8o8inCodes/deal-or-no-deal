@@ -209,7 +209,11 @@ function App() {
 					></MoneyList>
 				</div>
 				<div>
-					<input className="editableTitle" type="text"></input>
+					<input
+						className="editableTitle"
+						type="text"
+						placeholder="Our guest is"
+					></input>
 				</div>
 
 				{bankerMode && (

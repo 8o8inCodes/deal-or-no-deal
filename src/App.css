@@ -1,6 +1,7 @@
 body {
   background-color: #282c34b6;
   height: 100vh;
+  
   margin: 0;
   padding: 0;
   display: flex;
@@ -9,6 +10,7 @@ body {
 
 .App {
   text-align: center;
+  width: 100vw;
 }
 
 .App-logo {
