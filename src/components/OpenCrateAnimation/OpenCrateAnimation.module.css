@@ -40,3 +40,100 @@
 .button:hover {
     background-color: #accfff;
 }
+
+.button:disabled {
+    background-color: #ccc;
+}
+
+.crateImage {
+    background-image: url('/public/images/BagsAndBoxes_75_t.PNG');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    min-width: 150px;
+    text-align: center;
+    justify-content: center;
+
+    text-shadow: rgb(0, 0, 0) 3px 0px 0px, 
+  rgb(0, 0, 0) 2.83487px 0.981584px 0px, 
+  rgb(0, 0, 0) 2.35766px 1.85511px 0px, 
+  rgb(0, 0, 0) 1.62091px 2.52441px 0px, 
+  rgb(0, 0, 0) 0.705713px 2.91581px 0px, 
+  rgb(0, 0, 0) -0.287171px 2.98622px 0px, 
+  rgb(0, 0, 0) -1.24844px 2.72789px 0px, 
+  rgb(0, 0, 0) -2.07227px 2.16926px 0px, 
+  rgb(0, 0, 0) -2.66798px 1.37182px 0px, 
+  rgb(0, 0, 0) -2.96998px 0.42336px 0px, 
+  rgb(0, 0, 0) -2.94502px -0.571704px 0px, 
+  rgb(0, 0, 0) -2.59586px -1.50383px 0px, 
+  rgb(0, 0, 0) -1.96093px -2.27041px 0px, 
+  rgb(0, 0, 0) -1.11013px -2.78704px 0px, 
+  rgb(0, 0, 0) -0.137119px -2.99686px 0px, 
+  rgb(0, 0, 0) 0.850987px -2.87677px 0px, 
+  rgb(0, 0, 0) 1.74541px -2.43999px 0px, 
+  rgb(0, 0, 0) 2.44769px -1.73459px 0px, 
+  rgb(0, 0, 0) 2.88051px -0.838247px 0px,
+  rgb(0, 0, 0) 0 0 10px,
+  rgb(0, 0, 0) 0 0 10px,
+  rgb(0, 0, 0) 0 0 10px,
+  rgb(0, 0, 0) 0 0 10px;
+    animation: shake 2s;
+}
+
+.crateImage h1 {
+    opacity: 0;
+    animation: opacity-change 2.5s forwards;
+}
+
+@keyframes opacity-change {
+    0% {
+        opacity: 0;
+    }
+    90% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: rotate(0deg) scale(10%);
+        color: none;
+    }
+    10% {
+        transform: rotate(5deg) scale(10%);
+    }
+    20% {
+        transform: rotate(-10deg) scale(20%);
+    }
+    30% {
+        transform: rotate(15deg) scale(30%);
+    }
+    40% {
+        transform: rotate(-20deg) scale(40%);
+    }
+    50% {
+        transform: rotate(25deg) scale(50%);
+    }
+    60% {
+        transform: rotate(-30deg) scale(60%);
+    }
+    70% {
+        transform: rotate(35deg) scale(70%);
+    }
+    80% {
+        transform: rotate(-40deg) scale(80%);
+    }
+    90% {
+        transform: rotate(45deg) scale(90%);
+        color: none;
+    }
+    100% {
+        transform: rotate(0) scale(100%);
+    }
+}
