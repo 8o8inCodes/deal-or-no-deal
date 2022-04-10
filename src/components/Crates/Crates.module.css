@@ -64,6 +64,10 @@
     filter:hue-rotate(250deg);
 }
 
+.endInitialCrate {
+    filter:hue-rotate(250deg);
+}
+
 .crateText {
     background-color: rgb(255 171 171 / 61%);
     border-radius: 20px;

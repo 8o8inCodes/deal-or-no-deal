@@ -6,10 +6,11 @@ import Crates from "./components/Crates/Crates";
 import OpenCrateAnimation from "./components/OpenCrateAnimation/OpenCrateAnimation";
 import BankerPopup from "./components/BankerPopup/BankerPopup";
 
-const crates = [
-	0.01, 1, 5, 10, 25, 50, 75, 100, 200, 300, 400, 500, 750, 1000, 5000, 10000,
-	25000, 50000, 75000, 100000, 200000, 300000, 400000, 500000, 750000, 1000000,
-];
+const crates = [0.01, 1, 5, 10, 25, 50, 75, 100, 200];
+// const crates = [
+// 	0.01, 1, 5, 10, 25, 50, 75, 100, 200, 300, 400, 500, 750, 1000, 5000, 10000,
+// 	25000, 50000, 75000, 100000, 200000, 300000, 400000, 500000, 750000, 1000000,
+// ];
 
 const AMOUNT_OF_CASES_TO_PICK = 6;
 
@@ -69,9 +70,9 @@ function App() {
 		setShuffledCrates(newShuffledCrates);
 		setCratesState(newCratesState);
 
-		let closedCrates = cratesState.filter((crate) => !crate.isOpen);
-		if (closedCrates.length === 3) {
-			setFinalCrates([
+		let closedCrates = newCratesState.filter((crate) => !crate.isOpen);
+		if (closedCrates.length === 2) {
+			const newFinalCrates = [
 				{
 					...closedCrates[0],
 					initial: false,
@@ -80,7 +81,8 @@ function App() {
 					...closedCrates[1],
 					initial: false,
 				},
-			]);
+			];
+			setFinalCrates(newFinalCrates.sort((a, b) => a.id - b.id));
 		} else {
 			updateCaseAmountToPick();
 		}
@@ -116,6 +118,7 @@ function App() {
 					return {
 						...crate,
 						initial: true,
+						endInitial: true,
 					};
 				}
 				return _crate;
@@ -125,6 +128,7 @@ function App() {
 					return {
 						...crate,
 						initial: true,
+						endInitial: true,
 					};
 				}
 				return _crate;
@@ -152,15 +156,28 @@ function App() {
 
 	useEffect(() => {
 		const newCrateState = [];
-		crates.forEach((money) => {
+		crates.forEach((money, index) => {
 			newCrateState.push({
+				index,
 				money,
 				isOpen: false,
 				initial: false,
 			});
 		});
+
+		const shuffled = shuffle(newCrateState);
+		const cratesWithIds = shuffled.map((crate, index) => {
+			newCrateState[crate.index] = {
+				...newCrateState[crate.index],
+				id: index,
+			};
+			return {
+				...crate,
+				id: index,
+			};
+		});
 		setCratesState(newCrateState);
-		setShuffledCrates(shuffle(newCrateState));
+		setShuffledCrates(cratesWithIds);
 	}, []);
 
 	const renderGame = () => {
