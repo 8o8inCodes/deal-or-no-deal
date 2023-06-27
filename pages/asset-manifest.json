@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.853f7693.css",
+    "main.js": "/static/js/main.13af7375.js",
+    "static/js/787.addecf21.chunk.js": "/static/js/787.addecf21.chunk.js",
+    "static/media/666839.jpg": "/static/media/666839.98a1d44427fb44ba81b8.jpg",
+    "static/media/BagsAndBoxes_75_t.PNG": "/static/media/BagsAndBoxes_75_t.307c716d5f7cdaa9f5cc.PNG",
+    "index.html": "/index.html",
+    "main.853f7693.css.map": "/static/css/main.853f7693.css.map",
+    "main.13af7375.js.map": "/static/js/main.13af7375.js.map",
+    "787.addecf21.chunk.js.map": "/static/js/787.addecf21.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.853f7693.css",
+    "static/js/main.13af7375.js"
+  ]
+}
